@@ -1,0 +1,21 @@
+{
+  "name": "candidates-lite",
+  "version": "1.0.0",
+  "description": "A toy app to illustarte the usage of m3o DB API and fstify",
+  "main": "server.js",
+  "author": "Parthipan Natkunam",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
