@@ -1,10 +1,25 @@
 const app = require("fastify")({ logger: true });
+const nanoId = require("nanoid").nanoid;
 const config = require("./config");
+const M3OClient = require("./m3oClient");
 
-const {port} = config;
+const {port, accessKey} = config;
+const client = new M3OClient({token: accessKey});
 
-app.get('/', async (request, reply) => {
-  return { hello: 'world' }
+app.post('/candidate/create', async (request, reply) => {
+  try{
+    const response = await client.call('db', 'Create', {
+      "record": {
+        id: nanoId(),
+        ...request.body
+      },
+      "table": "candidate"
+    })
+    return response.id;
+  }catch(err){
+      console.log(err);
+      return err;
+  }
 })
 
 const start = async () => {
